@@ -1,0 +1,33 @@
+name: Build
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    name: Compile and verify
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Compile sources
+        run: javac -cp "lib/*" -d out src/*.java
+
+      - name: Verify generated classes
+        run: |
+          test -f out/Implementor.class
+          test -f out/MethodCollector.class
+          test -f out/MethodGenerator.class
+          test -f out/TypeUtils.class
+          echo "All classes compiled successfully"
