@@ -8,7 +8,7 @@
 с суффиксом `Impl`, готовый к компиляции.
 
 ![Java](https://img.shields.io/badge/Java-17%2B-orange?style=flat-square&logo=openjdk)
-![Build](https://img.shields.io/badge/build-passing-brightgreen?style=flat-square)
+![Build](https://github.com/meloy156/jreflect-implementor/actions/workflows/build.yml/badge.svg)
 ![License](https://img.shields.io/badge/license-MIT-blue?style=flat-square)
 ![Reflection](https://img.shields.io/badge/powered%20by-Reflection%20API-purple?style=flat-square)
 
