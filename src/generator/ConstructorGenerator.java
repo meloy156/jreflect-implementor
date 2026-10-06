@@ -1,3 +1,5 @@
+package generator;
+
 import java.lang.reflect.Constructor;
 
 public final class ConstructorGenerator {
@@ -13,7 +15,7 @@ public final class ConstructorGenerator {
      */
     public static String generateConstructor(Constructor<?> c, String implClassName) {
         StringBuilder sb = new StringBuilder();
-        sb.append("    ").append(TypeUtils.visible(c.getClass())).append(implClassName);
+        sb.append("    ").append(util.TypeUtils.visible(c.getClass())).append(implClassName);
         sb.append('(').append(parametersFromConstructor(c)).append(')');
 
         Class<?>[] exceptions = c.getExceptionTypes();
@@ -22,7 +24,7 @@ public final class ConstructorGenerator {
             for (int i = 0; i < exceptions.length; ++i) {
                 if (i > 0)
                     sb.append(", ");
-                sb.append(TypeUtils.typeName(exceptions[i]));
+                sb.append(util.TypeUtils.typeName(exceptions[i]));
             }
         }
 
@@ -46,7 +48,7 @@ public final class ConstructorGenerator {
         for (int i = 0; i < types.length; ++i) {
             if (i > 0)
                 sb.append(", ");
-            sb.append(TypeUtils.typeName(types[i])).append(" arg").append(i);
+            sb.append(util.TypeUtils.typeName(types[i])).append(" arg").append(i);
         }
         return sb.toString();
     }

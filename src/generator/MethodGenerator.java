@@ -1,3 +1,5 @@
+package generator;
+
 import java.lang.reflect.Method;
 
 
@@ -17,8 +19,8 @@ public final class MethodGenerator {
     public static String generateTxtMethodForFile(Method m) {
         return "    @Override\n" +
                 "    " +
-                TypeUtils.visible(m.getClass()) +
-                TypeUtils.typeName(m.getReturnType()) + " " +
+                util.TypeUtils.visible(m.getClass()) +
+                util.TypeUtils.typeName(m.getReturnType()) + " " +
                 m.getName() +
                 "(" + parametrs(m) + ")"
                 + throwsClause(m)  + " {\n" +
@@ -38,7 +40,7 @@ public final class MethodGenerator {
         StringBuilder string = new StringBuilder();
         for (int i = 0; i < types.length; i++) {
             if (i > 0) string.append(", ");
-            string.append(TypeUtils.typeName(types[i])).append(" arg").append(i);
+            string.append(util.TypeUtils.typeName(types[i])).append(" arg").append(i);
         }
         return string.toString();
     }
@@ -69,7 +71,7 @@ public final class MethodGenerator {
         for (int i = 0; i < exceptions.length; ++i) {
             if (i > 0)
                 sb.append(", ");
-            sb.append(TypeUtils.typeName(exceptions[i]));
+            sb.append(util.TypeUtils.typeName(exceptions[i]));
         }
         return sb.toString();
     }

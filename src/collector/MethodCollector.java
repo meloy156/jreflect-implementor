@@ -1,3 +1,5 @@
+package collector;
+
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.LinkedHashMap;
@@ -31,7 +33,7 @@ public final class MethodCollector {
             if (metod.isSynthetic()) continue;
             if (metod.isDefault()) continue;
 
-            result.putIfAbsent(TypeUtils.getFullNameMethod(metod), metod);
+            result.putIfAbsent(util.TypeUtils.getFullNameMethod(metod), metod);
         }
 
         collect(aClass.getSuperclass(), result);
