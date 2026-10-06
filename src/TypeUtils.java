@@ -25,7 +25,7 @@ public final class TypeUtils {
      * @param m сам метод
      * @return public/protected/''
      */
-    public static String visible(Method m) {
+    public static String visible(Class<?> m) {
         int mod = m.getModifiers();
         if (Modifier.isPublic(mod))
             return "public ";
