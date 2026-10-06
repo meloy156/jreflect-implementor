@@ -15,15 +15,15 @@ public final class MethodGenerator {
      * 4) }
      */
     public static String generateTxtMethodForFile(Method m) {
-        String string = "    @Override\n" +
+        return "    @Override\n" +
                 "    " +
-                TypeUtils.visible(m) +
+                TypeUtils.visible(m.getClass()) +
                 TypeUtils.typeName(m.getReturnType()) + " " +
                 m.getName() +
-                "(" + parametrs(m) + ")" + " {\n" +
+                "(" + parametrs(m) + ")"
+                + throwsClause(m)  + " {\n" +
                 defaultReturn(m) +
                 "    }\n\n";
-        return string;
     }
 
 
@@ -59,4 +59,19 @@ public final class MethodGenerator {
 
         return "        return null;\n";
     }
+
+
+    private static String throwsClause(Method m) {
+        Class<?>[] exceptions = m.getExceptionTypes();
+        if (exceptions.length == 0) return "";
+        StringBuilder sb = new StringBuilder();
+        sb.append(" throws ");
+        for (int i = 0; i < exceptions.length; ++i) {
+            if (i > 0)
+                sb.append(", ");
+            sb.append(TypeUtils.typeName(exceptions[i]));
+        }
+        return sb.toString();
+    }
+
 }
