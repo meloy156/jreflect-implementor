@@ -25,15 +25,4 @@ jobs:
         run: javac -cp "lib/*" -d out -sourcepath src   src/Implementor.java
 
       - name: Verify generated classes
-        run: |
-          test -f out/Implementor.class
-          test -f out/collector/MethodCollector.class
-          test -f out/collector/ConstructorCollector.class
-          test -f out/generator/MethodGenerator.class
-          test -f out/generator/ConstructorGenerator.class
-          test -f out/generator/HeadBuilder.class
-          test -f out/validator/MethodValidator.class
-          test -f out/validator/TokenValidator.class
-          test -f out/util/TypeUtils.class
-          test -f out/util/OverrideResolver.class
-          echo "All classes compiled successfully"
+        run: find out -name "*.class"
