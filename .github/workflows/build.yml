@@ -22,7 +22,7 @@ jobs:
           java-version: '21'
 
       - name: Compile sources
-        run: javac -cp "lib/*" -d out -sourcepath src/*.java
+        run: javac -cp "lib/*" -d out -sourcepath src   src/Implementor.java
 
       - name: Verify generated classes
         run: |
