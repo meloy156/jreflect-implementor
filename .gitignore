@@ -8,9 +8,22 @@ out/
 *.class
 .idea/
 *.iml
+*iws
 
 ### Папка сборки
 out/
+build/
+target/
+*.class
+
+# Build artifacts
+*.jar
+!lib/*.jar
+
+# Temporary files
+scripts/manifest.txt
+sources.txt
+test/
 
 # Служебные папки курса
 __Test__*/

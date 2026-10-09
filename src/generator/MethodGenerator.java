@@ -3,18 +3,19 @@ package generator;
 import java.lang.reflect.Method;
 
 
+/**
+ * Утилитный класс для генерации исходного кода методов-заглушек.
+ */
 public final class MethodGenerator {
 
     private MethodGenerator() {}
 
     /**
-     * Генерирует текст готовой заглушки для метода-заглушка
-     * @param m метод который нужен
-     * @return 4 строки
-     * 1) @Override
-     * 2) заголовочная метода
-     * 3) return дефолт
-     * 4) }
+     * Генерирует текст метода-заглушки с аннотацией {@code @Override}
+     * и возвратом значения по умолчанию.
+     *
+     * @param m метод, для которого создаётся заглушка
+     * @return исходный код метода
      */
     public static String generateTxtMethodForFile(Method m) {
         return "    @Override\n" +
@@ -30,10 +31,11 @@ public final class MethodGenerator {
 
 
     /**
-     * Для generateTxtMethodForFile
-     * правильные параметры для метода
+     /**
+     * Формирует список параметров метода с типами и именами.
+     *
      * @param m метод
-     * @return строка с его параметрами
+     * @return строка вида {@code Type0 arg0, Type1 arg1}
      */
     private static String parametrs(Method m) {
         Class<?>[] types = m.getParameterTypes();
@@ -46,10 +48,11 @@ public final class MethodGenerator {
     }
 
     /**
-     * Для generateTxtMethodForFile
-     * выводит дефолтное значение для метода
+     * Возвращает код возврата значения по умолчанию для указанного
+     * возвращаемого типа.
+     *
      * @param m метод
-     * @return defaultReturn
+     * @return строка с {@code return ...;} или пустая строка для {@code void}
      */
     private static String defaultReturn(Method m) {
         Class<?> ret = m.getReturnType();
@@ -63,6 +66,12 @@ public final class MethodGenerator {
     }
 
 
+    /**
+     * Формирует секцию {@code throws} для метода.
+     *
+     * @param m метод
+     * @return строка вида {@code  throws Exception1, Exception2} или пустая строка
+     */
     private static String throwsClause(Method m) {
         Class<?>[] exceptions = m.getExceptionTypes();
         if (exceptions.length == 0) return "";

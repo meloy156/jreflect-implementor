@@ -6,6 +6,10 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 
+/**
+ * Утилитный класс для сбора абстрактных методов, которые должны быть
+ * реализованы в генерируемом классе.
+ */
 public final class MethodCollector {
 
     private MethodCollector() {}
@@ -22,6 +26,13 @@ public final class MethodCollector {
     }
 
 
+    /**
+     * Рекурсивно обходит иерархию классов и интерфейсов и добавляет
+     * абстрактные методы в карту.
+     *
+     * @param aClass текущий класс или интерфейс
+     * @param result карта, в которую добавляются методы
+     */
     private static void collect(Class<?> aClass, Map<String, Method> result) {
         if (aClass == null || aClass == Object.class) return;
 
